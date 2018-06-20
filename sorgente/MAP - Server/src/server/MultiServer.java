@@ -13,7 +13,7 @@ class MultiServer {
 	/**
 	 * La porta da usare per la connessione.
 	 */
-	private int PORT = 8080;
+	private int PORT = 8081;
 
 	/**
 	 * Il costruttore della classe. Assegna la porta al server e fa partire la
@@ -55,6 +55,6 @@ class MultiServer {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		new MultiServer(8080);
+		new MultiServer(8081);
 	}
 }
