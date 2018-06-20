@@ -247,6 +247,6 @@ public class KMeans extends JFrame {
 	 */
 	public static void main(String args[]) throws IOException {
 		KMeans test = new KMeans();
-		test.init(null, 8080);
+		test.init(null, 8081);
 	}
 }
