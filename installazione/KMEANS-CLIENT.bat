@@ -1,0 +1,1 @@
+START /min java -jar client.jar localhost 8081

@@ -1,0 +1,1 @@
+START /min java -jar server.jar 8081
