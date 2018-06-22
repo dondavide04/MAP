@@ -49,7 +49,7 @@ public class KMeans extends JFrame {
 	 * @throws IOException
 	 * 
 	 */
-	public void init(String ip, int port) throws IOException {
+	public void init(String ip, int port) {
 		Container cp = getContentPane();
 		TabbedPane tabbed = new TabbedPane();
 		cp.setLayout(new GridLayout(1, 1));
@@ -57,29 +57,33 @@ public class KMeans extends JFrame {
 		tab.addTab("DB", tabbed.panelDB);
 		tab.addTab("File", tabbed.panelFile);
 		cp.add(tab);
-		InetAddress addr = InetAddress.getByName(ip);
-		System.out.println("addr = " + addr);
-		Socket socket = new Socket(addr, port);
-		System.out.println(socket);
-		out = new ObjectOutputStream(socket.getOutputStream());
-		in = new ObjectInputStream(socket.getInputStream());
-
-		this.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				try {
-					in.close();
-					out.close();
-					socket.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} finally {
-					System.exit(0);
-				}
-			}
-		});
-
 		setSize(750, 500);
 		setVisible(true);
+		try {
+			InetAddress addr = InetAddress.getByName(ip);
+			System.out.println("addr = " + addr);
+			Socket socket = new Socket(addr, port);
+			System.out.println(socket);
+			out = new ObjectOutputStream(socket.getOutputStream());
+			in = new ObjectInputStream(socket.getInputStream());
+
+			this.addWindowListener(new WindowAdapter() {
+				public void windowClosing(WindowEvent e) {
+					try {
+						in.close();
+						out.close();
+						socket.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} finally {
+						System.exit(0);
+					}
+				}
+			});
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(this, "Errore di connessione con il server");
+			System.exit(0);
+		}
 	}
 
 	/**
@@ -137,9 +141,9 @@ public class KMeans extends JFrame {
 			out.writeObject(3);
 			String tabName = this.panelFile.tableText.getText();
 			String k = this.panelFile.kText.getText();
-			String[] fileName = {tabName, k};
+			String[] fileName = { tabName, k };
 			out.writeObject(fileName);
-			//out.writeObject(tabName);
+			// out.writeObject(tabName);
 			String result = (String) in.readObject();
 			if (result.equals("OK")) {
 				JOptionPane.showMessageDialog(this, "Operazione riuscita!");
@@ -247,6 +251,11 @@ public class KMeans extends JFrame {
 	 */
 	public static void main(String args[]) throws IOException {
 		KMeans test = new KMeans();
-		test.init(args[0],new Integer(args[1]));
+		try {
+		test.init(args[0], new Integer(args[1]));
+		}catch (RuntimeException e){
+			JOptionPane.showMessageDialog(test, "Parametri a riga di comando errati!");
+			System.exit(0);
+		}
 	}
 }
