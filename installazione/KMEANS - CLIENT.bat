@@ -1,0 +1,1 @@
+START /min java -jar client.jar %1"localhost" %2"8080"
