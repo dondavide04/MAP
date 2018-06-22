@@ -55,6 +55,6 @@ class MultiServer {
 	 * @param args
 	 */
 	public static void main(String args[]) {
-		new MultiServer(8081);
+		new MultiServer(new Integer(args[0]));
 	}
 }
