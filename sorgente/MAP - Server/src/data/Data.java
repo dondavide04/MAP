@@ -2,7 +2,6 @@ package data;
 
 import java.sql.SQLException;
 import java.util.*;
-
 import database.DatabaseConnectionException;
 import database.DbAccess;
 import database.EmptySetException;
@@ -142,10 +141,8 @@ public class Data {
 	 */
 	public String toString() {
 		String s = "";
-		for (int i = 0; i < attributeSet.size(); i++) {
-			s += attributeSet.get(i).getName();
-			if (i != attributeSet.size() - 1)
-				s += ",";
+		for(Attribute attribute : attributeSet) {
+			s += attribute.getName();
 		}
 		s += "\n";
 		for (int i = 0; i < numberOfExamples; i++) {
