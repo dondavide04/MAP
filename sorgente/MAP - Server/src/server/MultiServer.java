@@ -22,7 +22,7 @@ class MultiServer {
 	 * @param port
 	 *            La porta da usare per la connessione.
 	 */
-	MultiServer(int port) {
+	private MultiServer(int port) {
 		this.PORT = port;
 		run();
 	}
@@ -30,7 +30,7 @@ class MultiServer {
 	/**
 	 * Gestisce le connessioni multiple dai client.
 	 */
-	void run() {
+	private void run() {
 		try {
 			ServerSocket serverSocket = new ServerSocket(PORT);
 			try {

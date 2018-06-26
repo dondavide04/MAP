@@ -44,7 +44,7 @@ class ServerOneClient extends Thread {
 	 *            Socket per la connessione al client.
 	 * @throws IOException
 	 */
-	ServerOneClient(Socket s) throws IOException {
+	private ServerOneClient(Socket s) throws IOException {
 		this.socket = s;
 		in = new ObjectInputStream(socket.getInputStream());
 		out = new ObjectOutputStream(socket.getOutputStream());
