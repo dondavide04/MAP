@@ -19,7 +19,6 @@ public class Tuple implements Serializable {
 	 * @param size
 	 *            La dimensione della tupla da costruire.
 	 */
-	//$
 	Tuple(int size) {
 		tuple = new Item[size];
 	}

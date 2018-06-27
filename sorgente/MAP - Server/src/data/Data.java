@@ -132,7 +132,7 @@ public class Data {
 	 *            L'indice dell' attributo.
 	 * @return L'attributo nell'indice specificato.
 	 */
-	Attribute getAttribute(int index) {
+	public Attribute getAttribute(int index) {
 		return attributeSet.get(index);
 	}
 
