@@ -46,8 +46,6 @@ public class KMeans extends JFrame {
 	 *            L'indirizzo ip del server.
 	 * @param port
 	 *            La porta del server.
-	 * @throws IOException
-	 * 
 	 */
 	public void init(String ip, int port) {
 		Container cp = getContentPane();
